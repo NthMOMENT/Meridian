@@ -1,0 +1,21 @@
+[package]
+name = "meridian"
+version = "0.1.0"
+description = "Meridian — ZK-verified cross-chain intent settlement"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "meridian"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+init-if-needed = ["anchor-lang/init-if-needed"]
+
+[dependencies]
+anchor-lang = { version = "=0.31.0", features = ["init-if-needed"] }
+anchor-spl = "=0.31.0"

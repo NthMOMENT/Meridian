@@ -1,0 +1,11 @@
+target/
+*.env
+.env*
+*wallet*
+*keypair*
+*secret*
+*phrase*
+out/
+cache/
+broadcast/
+lib/
