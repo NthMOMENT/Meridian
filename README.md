@@ -16,7 +16,7 @@ Meridian is a decentralized, ZK verified cross chain intent network. Sign one tr
 | Relayers / Solvers | TypeScript + Rust | Monitor chains, fetch proofs, submit to orchestration chain. Collateralized & credit-scored. |
 | Frontend | Next.js + Wagmi + Viem | Mobile-first UI. Framer Motion progress tracker. Zero jargon. |
 | Node Hardware | Orange Pi 5 (16GB RAM) | Globally distributed $100 micro-computers. No central point of control. |
-| Security | [glassofbeer.ai/heist](https://glassofbeer.ai/heist) | In-house smart and commercial contract audit agent. |
+| Security | [glassofbeer.ai](https://glassofbeer.ai) | In-house smart and commercial contract audit agent. |
 
 ---
 
