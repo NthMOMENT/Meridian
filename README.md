@@ -80,7 +80,7 @@ Audit: **30/30 exploit checks 0 findings** including live reentrancy attack ([gl
 
 | Network | Program ID |
 |---|---|
-| Solana Devnet | `AznTbk9GmjfgF7KHb6pbxXnMG2354HZNVsTi3PSz2JjP` |
+| Solana Devnet | `9nKpoMMP2ZX2bRudcXjpAS4VtSJBxiZ8wsM69LAkHikv` |
 
 ---
 
@@ -113,11 +113,11 @@ Maat applies TradFi credit risk principles to DeFi solver infrastructure:
 
 ## Links
 
-- Website: [fouriers.xyz](https://fouriers.xyz)
+- Website: [ma-at.xyz](https://ma-at.xyz)
 - X: [@0xfourier](https://x.com/0xfourier)
 - Security: [glassofbeer.ai/heist](https://glassofbeer.ai/heist)
 - Smart contract audit tool: [glassofbeer.ai](https://glassofbeer.ai)
 
 ---
 
-*Maat — by NTH MOMENT | Solo Founder Build | Colosseum Crypto World's Fair 2026*
+*Maat — by NTH MOMENT | Solo Founder Build*
