@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  orchestrator:
+    build: .
+    container_name: meridian-orchestrator
+    restart: unless-stopped
+    env_file:
+      - .env
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
