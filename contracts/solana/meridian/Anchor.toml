@@ -3,14 +3,14 @@ seeds = false
 skip-lint = false
 
 [programs.devnet]
-meridian = "11111111111111111111111111111112"
+maat = "9nKpoMMP2ZX2bRudcXjpAS4VtSJBxiZ8wsM69LAkHikv"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
 cluster = "devnet"
-wallet = "/home/rammint/.config/solana/id.json"
+wallet = "/home/rammint/.config/solana/hot-wallet.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

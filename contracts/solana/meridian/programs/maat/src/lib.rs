@@ -1,10 +1,10 @@
 use anchor_lang::prelude::*;
 use anchor_lang::system_program;
 
-declare_id!("BtPToDyjMHAxZpXPA5i41ytCvRGoUTwhVKQZK4CPFD1t");
+declare_id!("9nKpoMMP2ZX2bRudcXjpAS4VtSJBxiZ8wsM69LAkHikv");
 
 #[program]
-pub mod meridian {
+pub mod maat {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>, admin: Pubkey, orchestrator: Pubkey) -> Result<()> {

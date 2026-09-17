@@ -1,5 +1,5 @@
 [workspace]
-members = ["programs/meridian"]
+members = ["programs/maat"]
 
 [profile.release]
 overflow-checks = true
