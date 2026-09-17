@@ -1,7 +1,7 @@
 {
-  "name": "meridian-orchestrator",
+  "name": "maat-orchestrator",
   "version": "0.1.0",
-  "description": "Meridian intent listener — polls EVM chains for IntentCreated events",
+  "description": "Maat intent listener — polls EVM chains for IntentCreated events",
   "main": "dist/listener.js",
   "scripts": {
     "build": "tsc",

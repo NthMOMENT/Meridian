@@ -1,8 +1,8 @@
-# Meridian by NTH MOMENT
+# Maat by NTH MOMENT
 
-> Cross-chain solvers are unsecured credit facilities operating without underwriting. Meridian is the first protocol to treat them like it.
+> Cross-chain solvers are unsecured credit facilities operating without underwriting. Maat is the first protocol to treat them like it.
 
-Meridian is a decentralized, ZK verified cross chain intent network. Sign one transaction on any chain, SP1 zero-knowledge proofs verify source chain finality and settle the exact amount to your destination wallet. No bridges. No wrapped tokens. No gas management. One signature and in under 45 seconds.
+Maat is a decentralized, ZK verified cross chain intent network. Sign one transaction on any chain, SP1 zero-knowledge proofs verify source chain finality and settle the exact amount to your destination wallet. No bridges. No wrapped tokens. No gas management. One signature and in under 45 seconds.
 
 ---
 
@@ -98,7 +98,7 @@ All smart contracts audited by [glassofbeer.ai/heist](https://glassofbeer.ai/hei
 
 ## The Risk Framework
 
-Meridian applies TradFi credit risk principles to DeFi solver infrastructure:
+Maat applies TradFi credit risk principles to DeFi solver infrastructure:
 
 - Solvers are treated as **unsecured credit facilities** and must be underwritten
 - Collateral requirements scale with intent size
@@ -120,4 +120,4 @@ Meridian applies TradFi credit risk principles to DeFi solver infrastructure:
 
 ---
 
-*Meridian — by NTH MOMENT | Solo Founder Build | Colosseum Crypto World's Fair 2026*
+*Maat — by NTH MOMENT | Solo Founder Build | Colosseum Crypto World's Fair 2026*

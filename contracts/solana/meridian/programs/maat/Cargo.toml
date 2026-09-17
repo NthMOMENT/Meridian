@@ -1,7 +1,7 @@
 [package]
 name = "maat"
 version = "0.1.0"
-description = "Meridian — ZK-verified cross-chain intent settlement"
+description = "Maat — ZK-verified cross-chain intent settlement"
 edition = "2021"
 
 [lib]

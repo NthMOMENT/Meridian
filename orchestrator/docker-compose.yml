@@ -3,7 +3,7 @@ version: "3.9"
 services:
   orchestrator:
     build: .
-    container_name: meridian-orchestrator
+    container_name: maat-orchestrator
     restart: unless-stopped
     env_file:
       - .env

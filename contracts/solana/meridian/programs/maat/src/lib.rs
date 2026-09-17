@@ -25,7 +25,7 @@ pub mod maat {
     ) -> Result<()> {
         require!(
             !ctx.accounts.program_state.paused,
-            MeridianError::ProgramPaused
+            MaatError::ProgramPaused
         );
 
         let nonce = ctx.accounts.program_state.intent_nonce;
@@ -66,7 +66,7 @@ pub mod maat {
             .program_state
             .intent_nonce
             .checked_add(1)
-            .ok_or(MeridianError::Overflow)?;
+            .ok_or(MaatError::Overflow)?;
 
         emit!(IntentSubmitted {
             intent_id,
@@ -86,63 +86,63 @@ pub mod maat {
     ) -> Result<()> {
         require!(
             !ctx.accounts.program_state.paused,
-            MeridianError::ProgramPaused
+            MaatError::ProgramPaused
         );
         require_keys_eq!(
             ctx.accounts.orchestrator.key(),
             ctx.accounts.program_state.orchestrator,
-            MeridianError::NotOrchestrator
+            MaatError::NotOrchestrator
         );
 
         let intent = &mut ctx.accounts.intent;
         require!(
             intent.status == IntentStatus::Pending,
-            MeridianError::IntentNotPending
+            MaatError::IntentNotPending
         );
 
         let clock = Clock::get()?;
         require!(
             clock.unix_timestamp < intent.expiry,
-            MeridianError::IntentExpired
+            MaatError::IntentExpired
         );
 
         require_eq!(
             ctx.accounts.circuit_breaker.channel_id,
             intent.source_chain_id,
-            MeridianError::ChannelMismatch
+            MaatError::ChannelMismatch
         );
         require!(
             !ctx.accounts.circuit_breaker.halted,
-            MeridianError::ChannelHalted
+            MaatError::ChannelHalted
         );
 
         require_keys_eq!(
             intent.destination,
             ctx.accounts.destination.key(),
-            MeridianError::AccountSubstitution
+            MaatError::AccountSubstitution
         );
         require_keys_eq!(
             ctx.accounts.owner.key(),
             intent.owner,
-            MeridianError::Unauthorized
+            MaatError::Unauthorized
         );
         let slippage_deduction = (intent.amount as u128)
             .checked_mul(intent.slippage_bps as u128)
-            .ok_or(MeridianError::Overflow)?
+            .ok_or(MaatError::Overflow)?
             .checked_div(10_000)
-            .ok_or(MeridianError::Overflow)? as u64;
+            .ok_or(MaatError::Overflow)? as u64;
         let min_acceptable = intent
             .amount
             .checked_sub(slippage_deduction)
-            .ok_or(MeridianError::Overflow)?;
+            .ok_or(MaatError::Overflow)?;
         require!(
             settlement_amount >= min_acceptable,
-            MeridianError::SlippageExceeded
+            MaatError::SlippageExceeded
         );
         // settlement_amount can't exceed what the owner actually escrowed.
         require!(
             settlement_amount <= intent.amount,
-            MeridianError::SettlementExceedsEscrow
+            MaatError::SettlementExceedsEscrow
         );
 
         intent.status = IntentStatus::Settled;
@@ -154,30 +154,30 @@ pub mod maat {
         **intent_info.try_borrow_mut_lamports()? = intent_info
             .lamports()
             .checked_sub(settlement_amount)
-            .ok_or(MeridianError::InsufficientFunds)?;
+            .ok_or(MaatError::InsufficientFunds)?;
         **ctx.accounts.destination.try_borrow_mut_lamports()? = ctx
             .accounts
             .destination
             .lamports()
             .checked_add(settlement_amount)
-            .ok_or(MeridianError::Overflow)?;
+            .ok_or(MaatError::Overflow)?;
 
         let refund_amount = intent
             .amount
             .checked_sub(settlement_amount)
-            .ok_or(MeridianError::Overflow)?;
+            .ok_or(MaatError::Overflow)?;
         if refund_amount > 0 {
             let intent_info = intent.to_account_info();
             **intent_info.try_borrow_mut_lamports()? = intent_info
                 .lamports()
                 .checked_sub(refund_amount)
-                .ok_or(MeridianError::InsufficientFunds)?;
+                .ok_or(MaatError::InsufficientFunds)?;
             **ctx.accounts.owner.try_borrow_mut_lamports()? = ctx
                 .accounts
                 .owner
                 .lamports()
                 .checked_add(refund_amount)
-                .ok_or(MeridianError::Overflow)?;
+                .ok_or(MaatError::Overflow)?;
         }
 
         emit!(IntentSettled {
@@ -198,17 +198,17 @@ pub mod maat {
         require_keys_eq!(
             ctx.accounts.owner.key(),
             intent.owner,
-            MeridianError::NotIntentOwner
+            MaatError::NotIntentOwner
         );
         require!(
             intent.status == IntentStatus::Pending,
-            MeridianError::IntentNotPending
+            MaatError::IntentNotPending
         );
 
         let clock = Clock::get()?;
         require!(
             clock.unix_timestamp > intent.expiry || ctx.accounts.program_state.paused,
-            MeridianError::IntentNotCancellable
+            MaatError::IntentNotCancellable
         );
 
         let amount = intent.amount;
@@ -218,13 +218,13 @@ pub mod maat {
         **intent_info.try_borrow_mut_lamports()? = intent_info
             .lamports()
             .checked_sub(amount)
-            .ok_or(MeridianError::InsufficientFunds)?;
+            .ok_or(MaatError::InsufficientFunds)?;
         **ctx.accounts.owner.try_borrow_mut_lamports()? = ctx
             .accounts
             .owner
             .lamports()
             .checked_add(amount)
-            .ok_or(MeridianError::Overflow)?;
+            .ok_or(MaatError::Overflow)?;
 
         emit!(IntentCancelled {
             intent: intent.key(),
@@ -244,7 +244,7 @@ pub mod maat {
         require_keys_eq!(
             ctx.accounts.admin.key(),
             ctx.accounts.program_state.admin,
-            MeridianError::NotAdmin
+            MaatError::NotAdmin
         );
 
         let cb = &mut ctx.accounts.circuit_breaker;
@@ -262,7 +262,7 @@ pub mod maat {
         require_keys_eq!(
             ctx.accounts.admin.key(),
             ctx.accounts.program_state.admin,
-            MeridianError::NotAdmin
+            MaatError::NotAdmin
         );
         ctx.accounts.program_state.paused = true;
         Ok(())
@@ -272,7 +272,7 @@ pub mod maat {
         require_keys_eq!(
             ctx.accounts.admin.key(),
             ctx.accounts.program_state.admin,
-            MeridianError::NotAdmin
+            MaatError::NotAdmin
         );
         ctx.accounts.program_state.paused = false;
         Ok(())
@@ -480,7 +480,7 @@ pub struct CircuitBreakerUpdated {
 // ------------------- Errors -------------------
 
 #[error_code]
-pub enum MeridianError {
+pub enum MaatError {
     #[msg("Program is paused")]
     ProgramPaused,
     #[msg("Signer is not the orchestrator")]

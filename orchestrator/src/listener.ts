@@ -186,7 +186,7 @@ function watchChain(client: typeof arbClient | typeof rhClient, chainLabel: stri
 
 async function main(): Promise<void> {
   console.log("═".repeat(64));
-  console.log("  Meridian Orchestrator — Intent Listener");
+  console.log("  Maat Orchestrator — Intent Listener");
   console.log(`  Started: ${new Date().toISOString()}`);
   console.log("═".repeat(64) + "\n");
 

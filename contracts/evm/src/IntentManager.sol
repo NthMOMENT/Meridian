@@ -5,7 +5,7 @@ import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 
 /// @title IntentManager
-/// @notice Source-chain (Arbitrum Sepolia / Robinhood Chain testnet) contract for Meridian.
+/// @notice Source-chain (Arbitrum Sepolia / Robinhood Chain testnet) contract for Maat.
 /// Users escrow ETH here to express a cross-chain intent; solvers overcollateralize
 /// and front the destination-chain payout; the off-chain orchestrator confirms
 /// settlement (or slashes a non-performing solver) once a ZK proof of the
