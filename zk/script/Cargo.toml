@@ -1,0 +1,21 @@
+[package]
+name = "maat-zk-script"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "prove"
+path = "src/bin/prove.rs"
+
+[dependencies]
+sp1-sdk = { version = "6.0.1" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json", "blocking"] }
+hex = "0.4"
+anyhow = "1.0"
+dotenv = "0.15"
+
+[build-dependencies]
+sp1-build = { version = "6.0.1" }
